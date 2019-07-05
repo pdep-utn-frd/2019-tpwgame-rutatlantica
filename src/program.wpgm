@@ -1,0 +1,10 @@
+import example.*
+import wollok.game.*
+program laberinto{
+	game.title("Messi chasing a mundial")
+	laberinto.iniciar()
+	game.addVisualCharacterIn(messi, game.at(2,14))
+	game.at(19,1).drawElement(copa)
+	game.whenCollideDo(copa, {character => character.ganar() })
+	game.start()
+}
