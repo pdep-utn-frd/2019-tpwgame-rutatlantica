@@ -1,11 +1,19 @@
 import wollok.game.*
 import direcciones.*
 
-object messi {
-	var position = new Position(4, 3)
+object tom {
+	var position = new Position(1, 1)
 	var direccion = arriba
 
-
+	method empuja(unElemento) {
+		try
+			unElemento.movete(direccion)
+		catch e {
+			console.println(e)
+			self.retrocede()
+		}
+	}
+	
 	method retrocede() {
 		position = direccion.opuesto().siguiente(position)
 	}
@@ -38,7 +46,7 @@ object messi {
 		direccion = unaDireccion
 	}
 	
-	method image() = "jugador.png"
+	method image() = "tom.png"
 	method position() = position
 	method position(_position) {
 		position = _position

@@ -1,10 +1,17 @@
-import example.*
+import jerry.*
+import tom.*
+import laberinto.*
+import direcciones.*
+import nivel.*
 import wollok.game.*
+
 program laberinto{
-	game.title("Messi chasing a mundial")
-	laberinto.iniciar()
-	game.addVisualCharacterIn(messi, game.at(2,14))
-	game.at(19,1).drawElement(copa)
-	game.whenCollideDo(copa, {character => character.ganar() })
+	game.title("TOM & JERRY")
+	game.height(10)
+	game.width(20)
+	//game.boardGround("fondo.png")	
+	
+	nivel1.cargar()
+	
 	game.start()
 }
