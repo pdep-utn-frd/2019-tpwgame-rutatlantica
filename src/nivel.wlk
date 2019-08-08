@@ -5,7 +5,7 @@ import laberinto.*
 import wollok.game.*
 
 object nivel1 {
-	
+	var veces = 0
 	method cargar() {
 		
 //	PAREDES
@@ -18,7 +18,7 @@ object nivel1 {
 		(0 .. largo).forEach{ n => posParedes.add(new Position(0, n)) } // bordeIzq 
 		(0 .. largo).forEach{ n => posParedes.add(new Position(ancho, n)) } // bordeDer
 		
-		//PAREDES DONDE VA EL LABERINTO
+//PAREDES DONDE VA EL LABERINTO
 		posParedes.addAll([new Position(2,1),new Position(2,2), new Position(2,3), new Position(2,4), new Position(2,5), new Position(2,6), new Position(2,7)])
 		posParedes.addAll([new Position(4,7), new Position(4,6), new Position(5,7), new Position(6,7), new Position(7,7), new Position(8,7), new Position(9,7), new Position(10,7), new Position(11,7)])
 		posParedes.addAll([new Position(13,7), new Position(13,8), new Position(13,6), new Position(13,5), new Position(12,5), new Position(11,5)])
@@ -32,10 +32,10 @@ object nivel1 {
 		posParedes.addAll([new Position(16,2), new Position(17,2)])
 		posParedes.forEach { p => self.dibujar(new Laberinto(p)) }	
 		
-// COPA
+// JERRY
 		game.addVisual(jerry)
 		
-// MESSI
+// TOM
 		game.addVisual(tom)
 
 // TECLADO
@@ -57,10 +57,20 @@ object nivel1 {
 			game.addVisual(dibujo)
 			return dibujo
 				}
-
+		method restart() {
+			game.clear()
+			self.cargar()
+		}
 		method comprobarSiGano(){
-			if (tom.position()==new Position(18,8)){
-				game.say(tom, "GANASTE! Presiona ESPACIO para jugar otra vez")
+			//var veces = 1
+			if (tom.position()==jerry.position()){
+				jerry.cambiarDePosicion()
+				game.say(jerry,"MUY LENTO")
+				veces = veces + 1
+				if (veces == 4){
+					game.whenCollideDo(tom, tom.declararseGanador())
+					
+				}
 			}
 		}
 		}

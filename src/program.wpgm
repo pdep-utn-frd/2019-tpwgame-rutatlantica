@@ -6,12 +6,12 @@ import nivel.*
 import wollok.game.*
 
 program laberinto{
-	game.title("TOM & JERRY")
+	game.title("ALCANZA A JERRY 4 VECES PARA GANAR")
 	game.height(10)
 	game.width(20)
 	//game.boardGround("fondo.png")	
 	
 	nivel1.cargar()
-	
+	//game.onTick(10000, "reiniciar", nivel1.restart())
 	game.start()
 }

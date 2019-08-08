@@ -1,5 +1,6 @@
 import wollok.game.*
 import direcciones.*
+import nivel.*
 
 object tom {
 	var position = new Position(1, 1)
@@ -9,9 +10,13 @@ object tom {
 		try
 			unElemento.movete(direccion)
 		catch e {
-			console.println(e)
 			self.retrocede()
 		}
+	}
+	method declararseGanador(){
+		game.say(self, "GANADOR")
+		nivel1.restart()
+		return " "
 	}
 	
 	method retrocede() {
