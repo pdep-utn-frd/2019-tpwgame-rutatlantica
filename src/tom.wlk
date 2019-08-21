@@ -3,7 +3,7 @@ import direcciones.*
 import nivel.*
 
 object tom {
-	var position = new Position(1, 1)
+	var position = game.at(1, 1)
 	var direccion = arriba
 
 	method empuja(unElemento) {
@@ -16,7 +16,6 @@ object tom {
 	method declararseGanador(){
 		game.say(self, "GANADOR")
 		nivel1.restart()
-		return " "
 	}
 	
 	method retrocede() {

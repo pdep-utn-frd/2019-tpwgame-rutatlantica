@@ -13,24 +13,24 @@ object nivel1 {
 		const largo = game.height() - 1
 	
 		var posParedes = []
-		(0 .. ancho).forEach{ n => posParedes.add(new Position(n, 0)) } // bordeAbajo
-		(0 .. ancho).forEach{ n => posParedes.add(new Position(n, largo)) } // bordeArriba 
-		(0 .. largo).forEach{ n => posParedes.add(new Position(0, n)) } // bordeIzq 
-		(0 .. largo).forEach{ n => posParedes.add(new Position(ancho, n)) } // bordeDer
+		(0 .. ancho).forEach{ n => posParedes.add(game.at(n, 0)) } // bordeAbajo
+		(0 .. ancho).forEach{ n => posParedes.add(game.at(n, largo)) } // bordeArriba 
+		(0 .. largo).forEach{ n => posParedes.add(game.at(0, n)) } // bordeIzq 
+		(0 .. largo).forEach{ n => posParedes.add(game.at(ancho, n)) } // bordeDer
 		
 //PAREDES DONDE VA EL LABERINTO
-		posParedes.addAll([new Position(2,1),new Position(2,2), new Position(2,3), new Position(2,4), new Position(2,5), new Position(2,6), new Position(2,7)])
-		posParedes.addAll([new Position(4,7), new Position(4,6), new Position(5,7), new Position(6,7), new Position(7,7), new Position(8,7), new Position(9,7), new Position(10,7), new Position(11,7)])
-		posParedes.addAll([new Position(13,7), new Position(13,8), new Position(13,6), new Position(13,5), new Position(12,5), new Position(11,5)])
-		posParedes.addAll([new Position(10,5), new Position(9,5), new Position(8,5), new Position(7,5), new Position(6,5)])
-		posParedes.addAll([new Position(4,5), new Position(4,3), new Position(4,2), new Position(5,2), new Position(5,3), new Position(4,4)])
-		posParedes.addAll([new Position(6,3), new Position(7,3), new Position(7,2), new Position(7,1), new Position(9,3), new Position(9,1)])
-		posParedes.addAll([new Position(10,1), new Position(11,1), new Position(12,1), new Position(13,1)])
-		posParedes.addAll([new Position(10,3), new Position(11,3), new Position(12,3), new Position(13,3), new Position(14,3), new Position(15,3)])
-		posParedes.addAll([new Position(15,2), new Position(15,4), new Position(15,4), new Position(15,5), new Position(15,6), new Position(15,7)])
-		posParedes.addAll([new Position(17,8), new Position(17,7), new Position(17,6), new Position(17,5), new Position(17,4), new Position(17,3)])
-		posParedes.addAll([new Position(16,2), new Position(17,2)])
-		posParedes.forEach { p => self.dibujar(new Laberinto(p)) }	
+		posParedes.addAll([game.at(2,1),game.at(2,2), game.at(2,3), game.at(2,4), game.at(2,5), game.at(2,6), game.at(2,7)])
+		posParedes.addAll([game.at(4,7), game.at(4,6), game.at(5,7), game.at(6,7), game.at(7,7), game.at(8,7), game.at(9,7), game.at(10,7), game.at(11,7)])
+		posParedes.addAll([game.at(13,7), game.at(13,8), game.at(13,6), game.at(13,5), game.at(12,5), game.at(11,5)])
+		posParedes.addAll([game.at(10,5), game.at(9,5), game.at(8,5), game.at(7,5), game.at(6,5)])
+		posParedes.addAll([game.at(4,5), game.at(4,3), game.at(4,2), game.at(5,2), game.at(5,3), game.at(4,4)])
+		posParedes.addAll([game.at(6,3), game.at(7,3), game.at(7,2), game.at(7,1), game.at(9,3), game.at(9,1)])
+		posParedes.addAll([game.at(10,1), game.at(11,1), game.at(12,1), game.at(13,1)])
+		posParedes.addAll([game.at(10,3), game.at(11,3), game.at(12,3), game.at(13,3), game.at(14,3), game.at(15,3)])
+		posParedes.addAll([game.at(15,2), game.at(15,4), game.at(15,4), game.at(15,5), game.at(15,6), game.at(15,7)])
+		posParedes.addAll([game.at(17,8), game.at(17,7), game.at(17,6), game.at(17,5), game.at(17,4), game.at(17,3)])
+		posParedes.addAll([game.at(16,2), game.at(17,2)])
+		posParedes.forEach { p => self.dibujar(new Laberinto(position = p)) }	
 		
 // JERRY
 		game.addVisual(jerry)
@@ -44,7 +44,7 @@ object nivel1 {
 		keyboard.left().onPressDo{ tom.irIzquierda() }
 		keyboard.right().onPressDo{ tom.irDerecha() }
 		
-		keyboard.space().onPressDo{tom.position(new Position(1,1))}
+		keyboard.space().onPressDo{tom.position(game.at(1,1))}
 		keyboard.any().onPressDo{ self.comprobarSiGano() }
 
 		
@@ -55,7 +55,6 @@ object nivel1 {
 		}
 		method dibujar(dibujo) {
 			game.addVisual(dibujo)
-			return dibujo
 				}
 		method restart() {
 			game.clear()
@@ -68,7 +67,8 @@ object nivel1 {
 				game.say(jerry,"MUY LENTO")
 				veces = veces + 1
 				if (veces == 4){
-					game.whenCollideDo(tom, tom.declararseGanador())
+//					game.whenCollideDo(tom, {tom.declararseGanador()})
+					tom.declararseGanador()
 					
 				}
 			}

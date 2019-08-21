@@ -2,23 +2,23 @@ import wollok.game.*
 import tom.*
 
 object jerry{
-	var posicionesPosibles = [new Position(6,2), new Position(8,1), new Position(16,3), new Position(1,1), new Position(18,8)]
-	var property position = new Position(18, 8)
+	var posicionesPosibles = [game.at(6,2), game.at(8,1), game.at(16,3), game.at(1,1), game.at(18,8)]
+	var property position = game.at(6, 2)
 	method image() = "jerry.png"
 	method movete(direccion){	}
 	method cambiarDePosicion(){
-		if (self.position() == new Position(18,8)){
-			position = new Position(6,2)
+		if (self.position() == game.at(18,8)){
+			position = game.at(6,2)
 		}
 		else{
-		if (self.position() == new Position(6,2)){
-			position = new Position(16,3)
+		if (self.position() == game.at(6,2)){
+			position = game.at(16,3)
 		}else
-		if (self.position() == new Position(16,3)){
-			position = new Position(1,1)
+		if (self.position() == game.at(16,3)){
+			position = game.at(1,1)
 		}else
-		if (self.position() == new Position(1,1)){
-			position = new Position(18,8)
+		if (self.position() == game.at(1,1)){
+			position = game.at(18,8)
 		}}
 	
 		}
