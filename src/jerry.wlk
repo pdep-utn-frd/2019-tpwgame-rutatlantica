@@ -24,7 +24,7 @@ object jerry{
 		}
 		
 	
-	method puedePistarte(_) = true
+	method puedePisarte(_) = true
 	
 }
 

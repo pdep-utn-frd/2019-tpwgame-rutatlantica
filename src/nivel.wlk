@@ -6,17 +6,37 @@ import wollok.game.*
 
 object nivel1 {
 	var veces = 0
+	var posParedes = []
+	var posBordes = []
+	const anchoVentana = game.width() - 1
+	const largoVentana = game.height() - 1
+	
+	method dibujar(dibujo) {
+		game.addVisual(dibujo)
+	}
+	
+	method agregarBordeVertical(inicioX,inicioY){
+		(inicioY .. largoVentana).forEach{ n => posBordes.add(game.at(inicioX, n)) }
+	}
+	
+	method agregarBordeHorizontal(inicioX,inicioY){
+		(inicioX .. anchoVentana).forEach{ n => posBordes.add(game.at(n, inicioY)) }
+	}
+	
+	method dibujarBordes(){
+		posBordes.forEach { p => self.dibujar(new Laberinto(position = p)) }
+	}
 	method cargar() {
 		
 //	PAREDES
-		const ancho = game.width() - 1
-		const largo = game.height() - 1
+
 	
-		var posParedes = []
-		(0 .. ancho).forEach{ n => posParedes.add(game.at(n, 0)) } // bordeAbajo
-		(0 .. ancho).forEach{ n => posParedes.add(game.at(n, largo)) } // bordeArriba 
-		(0 .. largo).forEach{ n => posParedes.add(game.at(0, n)) } // bordeIzq 
-		(0 .. largo).forEach{ n => posParedes.add(game.at(ancho, n)) } // bordeDer
+		self.agregarBordeHorizontal(0,0) // bordeAbajo
+		self.agregarBordeHorizontal(0,largoVentana) // bordeArriba 
+		self.agregarBordeVertical(0,0) // bordeIzq 
+		self.agregarBordeVertical(anchoVentana,0)  // bordeDer
+		self.dibujarBordes()
+		
 		
 //PAREDES DONDE VA EL LABERINTO
 		posParedes.addAll([game.at(2,1),game.at(2,2), game.at(2,3), game.at(2,4), game.at(2,5), game.at(2,6), game.at(2,7)])
@@ -53,9 +73,7 @@ object nivel1 {
 		
 	
 		}
-		method dibujar(dibujo) {
-			game.addVisual(dibujo)
-				}
+		
 		method restart() {
 			game.clear()
 			self.cargar()
