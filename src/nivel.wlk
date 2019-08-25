@@ -26,6 +26,11 @@ object nivel1 {
 	method dibujarBordes(){
 		posBordes.forEach { p => self.dibujar(new Laberinto(position = p)) }
 	}
+	
+	method dibujarParedes(){
+		posParedes.forEach { p => self.dibujar(new Laberinto(position = p)) }
+	}
+	
 	method cargar() {
 		
 //	PAREDES
@@ -39,18 +44,18 @@ object nivel1 {
 		
 		
 //PAREDES DONDE VA EL LABERINTO
-		posParedes.addAll([game.at(2,1),game.at(2,2), game.at(2,3), game.at(2,4), game.at(2,5), game.at(2,6), game.at(2,7)])
-		posParedes.addAll([game.at(4,7), game.at(4,6), game.at(5,7), game.at(6,7), game.at(7,7), game.at(8,7), game.at(9,7), game.at(10,7), game.at(11,7)])
-		posParedes.addAll([game.at(13,7), game.at(13,8), game.at(13,6), game.at(13,5), game.at(12,5), game.at(11,5)])
-		posParedes.addAll([game.at(10,5), game.at(9,5), game.at(8,5), game.at(7,5), game.at(6,5)])
-		posParedes.addAll([game.at(4,5), game.at(4,3), game.at(4,2), game.at(5,2), game.at(5,3), game.at(4,4)])
-		posParedes.addAll([game.at(6,3), game.at(7,3), game.at(7,2), game.at(7,1), game.at(9,3), game.at(9,1)])
-		posParedes.addAll([game.at(10,1), game.at(11,1), game.at(12,1), game.at(13,1)])
-		posParedes.addAll([game.at(10,3), game.at(11,3), game.at(12,3), game.at(13,3), game.at(14,3), game.at(15,3)])
-		posParedes.addAll([game.at(15,2), game.at(15,4), game.at(15,4), game.at(15,5), game.at(15,6), game.at(15,7)])
-		posParedes.addAll([game.at(17,8), game.at(17,7), game.at(17,6), game.at(17,5), game.at(17,4), game.at(17,3)])
-		posParedes.addAll([game.at(16,2), game.at(17,2)])
-		posParedes.forEach { p => self.dibujar(new Laberinto(position = p)) }	
+		(1..7).forEach{n => posParedes.add(game.at(2,n))}
+		(4..11).forEach{n => posParedes.add(game.at(n,7))}
+		(5..8).forEach{n => posParedes.add(game.at(13,n))}
+		(6..12).forEach{n => posParedes.add(game.at(n,5))}
+		(2..6).forEach{n => posParedes.add(game.at(4,n))}
+		(1..3).forEach{n => posParedes.add(game.at(7,n))}
+		(9..13).forEach{n => posParedes.add(game.at(n,1))}
+		(9..14).forEach{n => posParedes.add(game.at(n,3))}
+		(2..7).forEach{n => posParedes.add(game.at(15,n))}
+		(2..8).forEach{n => posParedes.add(game.at(17,n))}
+		posParedes.addAll([game.at(16,2), game.at(6,3), game.at(5,2), game.at(5,3)])
+		self.dibujarParedes()	
 		
 // JERRY
 		game.addVisual(jerry)
