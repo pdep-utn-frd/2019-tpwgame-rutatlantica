@@ -8,6 +8,7 @@ object nivel1 {
 	var veces = 0
 	var posParedes = []
 	var posBordes = []
+	var paredes = [new ParedH(1,2,3), ]
 	const anchoVentana = game.width() - 1
 	const largoVentana = game.height() - 1
 	
@@ -27,6 +28,9 @@ object nivel1 {
 		posBordes.forEach { p => self.dibujar(new Laberinto(position = p)) }
 	}
 	
+	method dibujarBordes2(inicioX,inicioY){
+		(inicioX .. anchoVentana).forEach { n => self.dibujar(new Laberinto(position = game.at(n, inicioY))) }
+	}
 	method dibujarParedes(){
 		posParedes.forEach { p => self.dibujar(new Laberinto(position = p)) }
 	}
@@ -45,8 +49,14 @@ object nivel1 {
 		
 //PAREDES DONDE VA EL LABERINTO
 		(1..7).forEach{n => posParedes.add(game.at(2,n))}
+		//alguien.paredVertical(1,7,2)
+		
 		(4..11).forEach{n => posParedes.add(game.at(n,7))}
+
 		(5..8).forEach{n => posParedes.add(game.at(13,n))}
+		//alguien.paredVertical(4,11,13)
+
+
 		(6..12).forEach{n => posParedes.add(game.at(n,5))}
 		(2..6).forEach{n => posParedes.add(game.at(4,n))}
 		(1..3).forEach{n => posParedes.add(game.at(7,n))}
@@ -54,6 +64,7 @@ object nivel1 {
 		(9..14).forEach{n => posParedes.add(game.at(n,3))}
 		(2..7).forEach{n => posParedes.add(game.at(15,n))}
 		(2..8).forEach{n => posParedes.add(game.at(17,n))}
+		
 		posParedes.addAll([game.at(16,2), game.at(6,3), game.at(5,2), game.at(5,3)])
 		self.dibujarParedes()	
 		
