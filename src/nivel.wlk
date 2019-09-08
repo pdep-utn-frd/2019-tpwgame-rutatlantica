@@ -6,9 +6,7 @@ import wollok.game.*
 
 object nivel1 {
 	var veces = 0
-	var posParedes = []
-	var posBordes = []
-	var paredes = [new ParedH(1,2,3), ]
+	//var paredes = [new ParedH(1,2,3), ]
 	const anchoVentana = game.width() - 1
 	const largoVentana = game.height() - 1
 	
@@ -16,57 +14,39 @@ object nivel1 {
 		game.addVisual(dibujo)
 	}
 	
-	method agregarBordeVertical(inicioX,inicioY){
-		(inicioY .. largoVentana).forEach{ n => posBordes.add(game.at(inicioX, n)) }
+	method dibujarParedVertical(inicio, fin, posX){
+		(inicio..fin).forEach{n => self.dibujar(new Laberinto(position = game.at(posX,n)))}
 	}
 	
-	method agregarBordeHorizontal(inicioX,inicioY){
-		(inicioX .. anchoVentana).forEach{ n => posBordes.add(game.at(n, inicioY)) }
-	}
-	
-	method dibujarBordes(){
-		posBordes.forEach { p => self.dibujar(new Laberinto(position = p)) }
-	}
-	
-	method dibujarBordes2(inicioX,inicioY){
-		(inicioX .. anchoVentana).forEach { n => self.dibujar(new Laberinto(position = game.at(n, inicioY))) }
-	}
-	method dibujarParedes(){
-		posParedes.forEach { p => self.dibujar(new Laberinto(position = p)) }
+	method dibujarParedHorizontal(inicio, fin, posY){
+		(inicio..fin).forEach{n => self.dibujar(new Laberinto(position = game.at(n,posY)))}
 	}
 	
 	method cargar() {
 		
-//	PAREDES
+//	BORDES
 
 	
-		self.agregarBordeHorizontal(0,0) // bordeAbajo
-		self.agregarBordeHorizontal(0,largoVentana) // bordeArriba 
-		self.agregarBordeVertical(0,0) // bordeIzq 
-		self.agregarBordeVertical(anchoVentana,0)  // bordeDer
-		self.dibujarBordes()
+		self.dibujarParedHorizontal(0,anchoVentana,largoVentana) // bordeArriba
+		self.dibujarParedHorizontal(0,anchoVentana,0) // bordeAbajo
+		self.dibujarParedVertical(0,largoVentana,0) // bordeIzq 
+		self.dibujarParedVertical(0,largoVentana,anchoVentana)  // bordeDer
 		
 		
 //PAREDES DONDE VA EL LABERINTO
-		(1..7).forEach{n => posParedes.add(game.at(2,n))}
-		//alguien.paredVertical(1,7,2)
-		
-		(4..11).forEach{n => posParedes.add(game.at(n,7))}
-
-		(5..8).forEach{n => posParedes.add(game.at(13,n))}
-		//alguien.paredVertical(4,11,13)
-
-
-		(6..12).forEach{n => posParedes.add(game.at(n,5))}
-		(2..6).forEach{n => posParedes.add(game.at(4,n))}
-		(1..3).forEach{n => posParedes.add(game.at(7,n))}
-		(9..13).forEach{n => posParedes.add(game.at(n,1))}
-		(9..14).forEach{n => posParedes.add(game.at(n,3))}
-		(2..7).forEach{n => posParedes.add(game.at(15,n))}
-		(2..8).forEach{n => posParedes.add(game.at(17,n))}
-		
-		posParedes.addAll([game.at(16,2), game.at(6,3), game.at(5,2), game.at(5,3)])
-		self.dibujarParedes()	
+		self.dibujarParedVertical(1,7,2)
+		self.dibujarParedVertical(3,3,6)
+		self.dibujarParedVertical(5,8,13)
+		self.dibujarParedVertical(2,3,5)
+		self.dibujarParedVertical(2,2,16)
+		self.dibujarParedVertical(2,6,4)
+		self.dibujarParedVertical(1,3,7)
+		self.dibujarParedVertical(2,7,15)		
+		self.dibujarParedVertical(2,8,17)
+		self.dibujarParedHorizontal(9,13,1)
+		self.dibujarParedHorizontal(9,14,3)
+		self.dibujarParedHorizontal(6,12,5)
+		self.dibujarParedHorizontal(4,11,7)
 		
 // JERRY
 		game.addVisual(jerry)
