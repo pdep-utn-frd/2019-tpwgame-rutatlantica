@@ -50,9 +50,11 @@ object nivel1 {
 		
 // JERRY
 		game.addVisual(jerry)
+		game.hideAttributes(jerry)
 		
 // TOM
 		game.addVisual(tom)
+		game.hideAttributes(tom)
 
 // TECLADO
 		keyboard.up().onPressDo{ tom.irArriba() }

@@ -3,6 +3,7 @@ import tom.*
 import laberinto.*
 import direcciones.*
 import nivel.*
+import reloj.*
 import wollok.game.*
 
 program laberinto{
@@ -12,6 +13,7 @@ program laberinto{
 	//game.boardGround("fondo.png")	
 	
 	nivel1.cargar()
-	//game.onTick(10000, "reiniciar", nivel1.restart())
+	reloj.startCounting()
+	game.onTick(9000, "jerry se mueve", {jerry.cambiarDePosicion()})
 	game.start()
 }
