@@ -3,6 +3,7 @@ import jerry.*
 import direcciones.*
 import laberinto.*
 import wollok.game.*
+import reloj.*
 
 object nivel1 {
 	var veces = 0
@@ -55,6 +56,8 @@ object nivel1 {
 // TOM
 		game.addVisual(tom)
 		game.hideAttributes(tom)
+		
+		game.addVisual(reloj)
 
 // TECLADO
 		keyboard.up().onPressDo{ tom.irArriba() }

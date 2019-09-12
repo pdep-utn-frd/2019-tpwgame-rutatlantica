@@ -23,13 +23,15 @@ object reloj{
 	
 	method restart(){
 		nro = 0
-		self.startCounting()
+//		self.startCounting()
 	}
+
+	method image() = listaNumeros.get(nro).image()
+	
 	method avanzar(){
-		game.addVisual(self)
-		image = listaNumeros.get(nro).image()
+		//game.addVisual(self)
 		nro +=1	
-		game.schedule(900,{game.removeVisual(self)})
+//		game.schedule(900,{game.removeVisual(self)})
 		
 	}
 	method startCounting(){
