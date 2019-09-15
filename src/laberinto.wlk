@@ -2,7 +2,7 @@ class Laberinto {
 	var property position
 	
 	
-	method movete(direccion) {
+	method movete() {
 		throw new Exception(message = "No se pueden atravesar las paredes")
 	}
 	

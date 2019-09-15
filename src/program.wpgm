@@ -10,10 +10,9 @@ program laberinto{
 	game.title("ALCANZA A JERRY 4 VECES PARA GANAR")
 	game.height(10)
 	game.width(20)
-	//game.boardGround("fondo.png")	
 	
 	nivel1.cargar()
-	reloj.startCounting()
-	game.onTick(9000, "jerry se mueve", {jerry.cambiarDePosicion()})
 	game.start()
+	reloj.startCounting()
+
 }

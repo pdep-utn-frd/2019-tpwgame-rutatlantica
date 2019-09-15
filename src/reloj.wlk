@@ -1,4 +1,5 @@
 import wollok.game.*
+import jerry.*
 
 class Digit {
 	var property image
@@ -17,24 +18,31 @@ const cero = new Digit(image = "0.png")
 
 object reloj{
 	var property position = game.at(1,9)
-	var nro = 0
+	var nro = -1
 	var listaNumeros = [nueve,ocho,siete,seis,cinco,cuatro,tres,dos,uno,cero]
-	var property image = "nueve.png"
+	var property image = nueve.image()
 	
 	method restart(){
 		nro = 0
-//		self.startCounting()
 	}
 
 	method image() = listaNumeros.get(nro).image()
 	
 	method avanzar(){
-		//game.addVisual(self)
-		nro +=1	
-//		game.schedule(900,{game.removeVisual(self)})
-		
+		nro +=1
+		self.controlDeCero()			
 	}
+	
 	method startCounting(){
 		game.onTick(1000, "cuenta regresiva", {self.avanzar()})
 	}
+	
+	method controlDeCero(){
+		if (self.image() == cero.image()) {jerry.cambiarDePosicion()}
+	}
+}
+
+object segundosRestantes{ 
+	var property image = "segundos_restantes.png"
+	var property position = game.at(2,9)
 }

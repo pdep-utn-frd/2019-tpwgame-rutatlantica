@@ -3,16 +3,17 @@ import direcciones.*
 import nivel.*
 
 object tom {
-	var position = game.at(1, 1)
+	var property position = game.at(1, 1)
 	var direccion = arriba
 
 	method empuja(unElemento) {
 		try
-			unElemento.movete(direccion)
+			unElemento.movete()
 		catch e {
 			self.retrocede()
 		}
 	}
+	
 	method declararseGanador(){
 		game.say(self, "GANADOR")
 		nivel1.restart()
@@ -51,8 +52,5 @@ object tom {
 	}
 	
 	method image() = "tom.png"
-	method position() = position
-	method position(_position) {
-		position = _position
-	} 
+	
 }

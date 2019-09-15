@@ -6,7 +6,6 @@ import wollok.game.*
 import reloj.*
 
 object nivel1 {
-	var veces = 0
 	//var paredes = [new ParedH(1,2,3), ]
 	const anchoVentana = game.width() - 1
 	const largoVentana = game.height() - 1
@@ -49,15 +48,21 @@ object nivel1 {
 		self.dibujarParedHorizontal(6,12,5)
 		self.dibujarParedHorizontal(4,11,7)
 		
+		
 // JERRY
 		game.addVisual(jerry)
 		game.hideAttributes(jerry)
+		
 		
 // TOM
 		game.addVisual(tom)
 		game.hideAttributes(tom)
 		
+// RELOJ
+		
 		game.addVisual(reloj)
+		game.addVisual(segundosRestantes)
+
 
 // TECLADO
 		keyboard.up().onPressDo{ tom.irArriba() }
@@ -66,7 +71,7 @@ object nivel1 {
 		keyboard.right().onPressDo{ tom.irDerecha() }
 		
 		keyboard.space().onPressDo{tom.position(game.at(1,1))}
-		keyboard.any().onPressDo{ self.comprobarSiGano() }
+//		keyboard.any().onPressDo{ self.comprobarSiGano() }
 
 		
 		game.whenCollideDo(tom, { algo => tom.empuja(algo) })
@@ -75,22 +80,12 @@ object nivel1 {
 	
 		}
 		
-		method restart() {
+	method restart() {
 			game.clear()
 			self.cargar()
-		}
-		method comprobarSiGano(){
-			//var veces = 1
-			if (tom.position()==jerry.position()){
-				jerry.cambiarDePosicion()
-				game.say(jerry,"MUY LENTO")
-				veces = veces + 1
-				if (veces == 4){
-//					game.whenCollideDo(tom, {tom.declararseGanador()})
-					tom.declararseGanador()
-					
-				}
-			}
-		}
-		}
+	}
+
+}
+
+
 
