@@ -18,9 +18,9 @@ const cero = new Digit(image = "0.png")
 
 object reloj{
 	var property position = game.at(1,9)
-	var nro = -1
+	var nro = 0
 	var listaNumeros = [nueve,ocho,siete,seis,cinco,cuatro,tres,dos,uno,cero]
-	var property image = nueve.image()
+//	var property image = nueve.image()
 	
 	method restart(){
 		nro = 0
@@ -38,7 +38,7 @@ object reloj{
 	}
 	
 	method controlDeCero(){
-		if (self.image() == cero.image()) {jerry.cambiarDePosicion()}
+		if (nro == 9) {jerry.cambiarDePosicion()}
 	}
 }
 

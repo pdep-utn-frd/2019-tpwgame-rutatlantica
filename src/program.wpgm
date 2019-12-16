@@ -12,7 +12,7 @@ program laberinto{
 	game.width(20)
 	
 	nivel1.cargar()
-	game.start()
 	reloj.startCounting()
+	game.start()
 
 }
